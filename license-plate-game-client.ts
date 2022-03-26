@@ -39,7 +39,7 @@ export namespace LicencePlateGameClient {
     }
 
 
-    export function requestNewGame(request: LicencePlateGameAPI.NewGameRequest) {
+    export function requestNewGame(request: LicencePlateGameAPI.NewGameRequest) : Promise<LicencePlateGameAPI.NewGameResponse> {
         const {game_id, elapsed_seconds, user_selected_puzzle, previous_puzzle_grade_level} = request
         const url = createRequestURL("license_plate_game/new_game", {game_id, elapsed_seconds, user_selected_puzzle, previous_puzzle_grade_level})
         return fetch(url).then((response) => {
@@ -50,15 +50,15 @@ export namespace LicencePlateGameClient {
                 })
             } else {
                 const {status, statusText} = response
-                const error = {status, statusText}
+                const error: RequestFailed = {status, statusText}
                 request.completion_callback?.(error)
-                throw <RequestFailed> error
+                throw error
             }
         })
     }
 
 
-    export function requestCheckAnswer(request: LicencePlateGameAPI.CheckAnswerRequest) {
+    export function requestCheckAnswer(request: LicencePlateGameAPI.CheckAnswerRequest) : Promise<LicencePlateGameAPI.CheckAnswerResponse> {
         const {game_id, puzzle_seed, answer_text, elapsed_seconds} = request
         const url = createRequestURL("license_plate_game/check_answer", {game_id, puzzle_seed, answer_text, elapsed_seconds})
         return fetch(url).then((response) => {
@@ -69,15 +69,15 @@ export namespace LicencePlateGameClient {
                 })
             } else {
                 const {status, statusText} = response
-                const error = {status, statusText}
+                const error: RequestFailed = {status, statusText}
                 request.completion_callback?.(error)
-                throw <RequestFailed> error
+                throw  error
             }
         })
     }
 
 
-    export function requestHint(request: LicencePlateGameAPI.HintRequest) {
+    export function requestHint(request: LicencePlateGameAPI.HintRequest) : Promise<LicencePlateGameAPI.HintResponse> {
         const {game_id, puzzle_seed, elapsed_seconds} = request
         const url = createRequestURL("license_plate_game/hint", {game_id, puzzle_seed, elapsed_seconds})
         return fetch(url).then((response) => {
@@ -88,9 +88,9 @@ export namespace LicencePlateGameClient {
                 })
             } else {
                 const {status, statusText} = response
-                const error = {status, statusText}
+                const error: RequestFailed = {status, statusText}
                 request.completion_callback?.(error)
-                throw <RequestFailed> error
+                throw error
             }
         })
     }
@@ -105,7 +105,7 @@ export namespace LicencePlateGameClient {
                 })
             } else {
                 const {status, statusText} = response
-                const error = {status, statusText}
+                const error: RequestFailed = {status, statusText}
                 console.error(`requestUpTime failed: ${JSON.stringify(error)}`)
                 throw error
             }

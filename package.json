@@ -13,7 +13,7 @@
   "license": "MIT",
   "main": "generated/lib.js",
   "typings": "index.d.ts",
-  "description": "A API for a license plate word game",
+  "description": "An API for a license plate word game",
   "devDependencies": {
     "typescript": "^4.5.4"
   }
