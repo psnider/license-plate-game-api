@@ -1,7 +1,7 @@
-import type {LicencePlateGameAPI} from "."
+import type {LicensePlateGameAPI} from "."
 
 
-export namespace LicencePlateGameClient {
+export namespace LicensePlateGameClient {
 
     // Has either status and statusText, or message
     export interface RequestFailed {
@@ -39,12 +39,12 @@ export namespace LicencePlateGameClient {
     }
 
  
-    export function requestNewGame(request: LicencePlateGameAPI.NewGameRequest) : Promise<LicencePlateGameAPI.NewGameResponse> {
+    export function requestNewGame(request: LicensePlateGameAPI.NewGameRequest) : Promise<LicensePlateGameAPI.NewGameResponse> {
         const {game_id, elapsed_seconds, user_selected_puzzle, previous_puzzle_grade_level} = request
         const url = createRequestURL("license_plate_game/new_game", {game_id, elapsed_seconds, user_selected_puzzle, previous_puzzle_grade_level})
         return fetch(url).then((response) => {
             if (response.ok) {
-                return response.json().then((new_game: LicencePlateGameAPI.NewGameResponse) => {
+                return response.json().then((new_game: LicensePlateGameAPI.NewGameResponse) => {
                     request.completion_callback?.(null, new_game)
                     return new_game
                 })
@@ -58,12 +58,12 @@ export namespace LicencePlateGameClient {
     }
 
 
-    export function requestCheckAnswer(request: LicencePlateGameAPI.CheckAnswerRequest) : Promise<LicencePlateGameAPI.CheckAnswerResponse> {
+    export function requestCheckAnswer(request: LicensePlateGameAPI.CheckAnswerRequest) : Promise<LicensePlateGameAPI.CheckAnswerResponse> {
         const {game_id, puzzle_seed, answer_text, elapsed_seconds} = request
         const url = createRequestURL("license_plate_game/check_answer", {game_id, puzzle_seed, answer_text, elapsed_seconds})
         return fetch(url).then((response) => {
             if (response.ok) {
-                return response.json().then((graded_answer: LicencePlateGameAPI.CheckAnswerResponse) => {
+                return response.json().then((graded_answer: LicensePlateGameAPI.CheckAnswerResponse) => {
                     request.completion_callback?.(null, graded_answer)
                     return graded_answer
                 })
@@ -77,12 +77,12 @@ export namespace LicencePlateGameClient {
     }
 
 
-    export function requestHint(request: LicencePlateGameAPI.HintRequest) : Promise<LicencePlateGameAPI.HintResponse> {
+    export function requestHint(request: LicensePlateGameAPI.HintRequest) : Promise<LicensePlateGameAPI.HintResponse> {
         const {game_id, puzzle_seed, elapsed_seconds} = request
         const url = createRequestURL("license_plate_game/hint", {game_id, puzzle_seed, elapsed_seconds})
         return fetch(url).then((response) => {
             if (response.ok) {
-                return response.json().then((hint: LicencePlateGameAPI.HintResponse) => {
+                return response.json().then((hint: LicensePlateGameAPI.HintResponse) => {
                     request.completion_callback?.(null, hint)
                     return hint
                 })
@@ -96,11 +96,11 @@ export namespace LicencePlateGameClient {
     }
 
 
-    export function requestUpTime() : Promise<LicencePlateGameAPI.UptimeResponse> {
+    export function requestUpTime() : Promise<LicensePlateGameAPI.UptimeResponse> {
         const url = "license_plate_game/uptime"
         return fetch(url).then((response) => {
             if (response.ok) {
-                return response.json().then((status: LicencePlateGameAPI.UptimeResponse) => {
+                return response.json().then((status: LicensePlateGameAPI.UptimeResponse) => {
                     return status
                 })
             } else {
@@ -113,7 +113,7 @@ export namespace LicencePlateGameClient {
     }
 
 
-    export function postFeedback(feedback: LicencePlateGameAPI.FeedBackPost) : Promise<void> {
+    export function postFeedback(feedback: LicensePlateGameAPI.FeedBackPost) : Promise<void> {
         const url = "license_plate_game/feedback"
         const fetch_request = {
             headers: {

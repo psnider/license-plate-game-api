@@ -1,6 +1,6 @@
 # license-plate-game-api
 
-Constains the Request and Response data types for a license plate word game.
+Contains the Request and Response data types for a license plate word game.
 
 These data types are defined in TypeScript, and are shared by the server and each of the web-apps that communicate with the server.
 

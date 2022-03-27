@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LicencePlateGameClient = void 0;
-var LicencePlateGameClient;
-(function (LicencePlateGameClient) {
+exports.LicensePlateGameClient = void 0;
+var LicensePlateGameClient;
+(function (LicensePlateGameClient) {
     function createRequestURL(service_url, url_parameters) {
         const keys = Object.keys(url_parameters);
         let url = service_url;
@@ -41,7 +41,7 @@ var LicencePlateGameClient;
             }
         });
     }
-    LicencePlateGameClient.requestNewGame = requestNewGame;
+    LicensePlateGameClient.requestNewGame = requestNewGame;
     function requestCheckAnswer(request) {
         const { game_id, puzzle_seed, answer_text, elapsed_seconds } = request;
         const url = createRequestURL("license_plate_game/check_answer", { game_id, puzzle_seed, answer_text, elapsed_seconds });
@@ -62,7 +62,7 @@ var LicencePlateGameClient;
             }
         });
     }
-    LicencePlateGameClient.requestCheckAnswer = requestCheckAnswer;
+    LicensePlateGameClient.requestCheckAnswer = requestCheckAnswer;
     function requestHint(request) {
         const { game_id, puzzle_seed, elapsed_seconds } = request;
         const url = createRequestURL("license_plate_game/hint", { game_id, puzzle_seed, elapsed_seconds });
@@ -83,7 +83,7 @@ var LicencePlateGameClient;
             }
         });
     }
-    LicencePlateGameClient.requestHint = requestHint;
+    LicensePlateGameClient.requestHint = requestHint;
     function requestUpTime() {
         const url = "license_plate_game/uptime";
         return fetch(url).then((response) => {
@@ -100,6 +100,28 @@ var LicencePlateGameClient;
             }
         });
     }
-    LicencePlateGameClient.requestUpTime = requestUpTime;
-})(LicencePlateGameClient = exports.LicencePlateGameClient || (exports.LicencePlateGameClient = {}));
+    LicensePlateGameClient.requestUpTime = requestUpTime;
+    function postFeedback(feedback) {
+        const url = "license_plate_game/feedback";
+        const fetch_request = {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'post',
+            body: JSON.stringify(feedback)
+        };
+        return fetch(url, fetch_request).then((response) => {
+            if (response.ok) {
+                return;
+            }
+            else {
+                const { status, statusText } = response;
+                const error = { status, statusText };
+                console.error(`postFeedback failed: ${JSON.stringify(error)}`);
+                throw error;
+            }
+        });
+    }
+    LicensePlateGameClient.postFeedback = postFeedback;
+})(LicensePlateGameClient = exports.LicensePlateGameClient || (exports.LicensePlateGameClient = {}));
 //# sourceMappingURL=license-plate-game-client.js.map

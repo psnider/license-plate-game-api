@@ -1,7 +1,9 @@
 
-export namespace LicencePlateGameAPI {
+// The data types used by the License Plate Game API.
+export namespace LicensePlateGameAPI {
 
 
+    // Notifies the originator of a request when the response has been received.
     export type ClientCompletionCallback = (error: any | null, result?: any) => void
 
 
@@ -72,6 +74,7 @@ export namespace LicencePlateGameAPI {
     }
 
 
+    // NOTE: There is no response from POSTing feedback, other than standard HTTP status.
     export interface FeedBackPost {
         // The game ID of the game that was in progress when this request was made.
         // This is not set when the page is reloaded.
@@ -84,8 +87,10 @@ export namespace LicencePlateGameAPI {
         rating: "good" | "poor"
         comments: string
     }
-    
 
+
+    
+    // NOTE: There is no data for a request for up-time.
     export interface UptimeResponse {
         uptime_seconds: number
     }
@@ -93,7 +98,7 @@ export namespace LicencePlateGameAPI {
 }
 
 
-export namespace LicencePlateGameClient {
+export namespace LicensePlateGameClient {
 
     // This is the data returned when a Promise is rejected.
     // This has either status and statusText, or message
@@ -103,10 +108,10 @@ export namespace LicencePlateGameClient {
         statusText?: string
     }
 
-    export function requestNewGame(request: LicencePlateGameAPI.NewGameRequest) : Promise<LicencePlateGameAPI.NewGameResponse>
-    export function requestCheckAnswer(request: LicencePlateGameAPI.CheckAnswerRequest) : Promise<LicencePlateGameAPI.CheckAnswerResponse>
-    export function requestHint(request: LicencePlateGameAPI.HintRequest) : Promise<LicencePlateGameAPI.HintResponse>
-    export function requestUpTime() : Promise<LicencePlateGameAPI.UptimeResponse>
-    export function postFeedback(feedback: LicencePlateGameAPI.FeedBackPost) : Promise<void>
+    export function requestNewGame(request: LicensePlateGameAPI.NewGameRequest) : Promise<LicensePlateGameAPI.NewGameResponse>
+    export function requestCheckAnswer(request: LicensePlateGameAPI.CheckAnswerRequest) : Promise<LicensePlateGameAPI.CheckAnswerResponse>
+    export function requestHint(request: LicensePlateGameAPI.HintRequest) : Promise<LicensePlateGameAPI.HintResponse>
+    export function requestUpTime() : Promise<LicensePlateGameAPI.UptimeResponse>
+    export function postFeedback(feedback: LicensePlateGameAPI.FeedBackPost) : Promise<void>
 
 }

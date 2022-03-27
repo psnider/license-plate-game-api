@@ -1,1 +1,1 @@
-export {LicencePlateGameClient} from "./license-plate-game-client"
+export {LicensePlateGameClient} from "./license-plate-game-client"
