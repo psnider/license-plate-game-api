@@ -38,7 +38,7 @@ export namespace LicencePlateGameClient {
         return url
     }
 
-
+ 
     export function requestNewGame(request: LicencePlateGameAPI.NewGameRequest) : Promise<LicencePlateGameAPI.NewGameResponse> {
         const {game_id, elapsed_seconds, user_selected_puzzle, previous_puzzle_grade_level} = request
         const url = createRequestURL("license_plate_game/new_game", {game_id, elapsed_seconds, user_selected_puzzle, previous_puzzle_grade_level})
@@ -111,5 +111,28 @@ export namespace LicencePlateGameClient {
             }
         })
     }
+
+
+    export function postFeedback(feedback: LicencePlateGameAPI.FeedBackPost) : Promise<void> {
+        const url = "license_plate_game/feedback"
+        const fetch_request = {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'post',
+            body: JSON.stringify(feedback)
+        }
+        return fetch(url, fetch_request).then((response) => {
+            if (response.ok) {
+                return 
+            } else {
+                const {status, statusText} = response
+                const error: RequestFailed = {status, statusText}
+                console.error(`postFeedback failed: ${JSON.stringify(error)}`)
+                throw error
+            }
+        })
+    }
+
 
 }

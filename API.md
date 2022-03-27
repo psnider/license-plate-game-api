@@ -1,4 +1,8 @@
-This page has links for a server running on your local machine.
+# API
+
+This page has links for a server running on your local machine.  
+To use it to target another server, copy this file and edit the links so they point to the desired server.
+
 
 # GET /license_plate_game/new_game
 
@@ -17,14 +21,14 @@ See [NewGameResponse](./index.d.ts#L29)
 
 # GET /license_plate_game/check_answer
 
-Fields are compatible with type [HintRequest](./index.d.ts#L41).
+Fields are compatible with type [CheckAnswerRequest](./index.d.ts#L41).
 
 - [/license_plate_game/check_answer?game_id=123498&puzzle_seed=ABC&answer_text=abacus&elapsed_seconds=22](http://localhost:3002/license_plate_game/check_answer?game_id=123498&puzzle_seed=ABC&answer_text=abacus&elapsed_seconds=22)
 
 
 ## Response:
 
-See [HintResponse](./index.d.ts#L49)
+See [CheckAnswerResponse](./index.d.ts#L49)
 
 
 # GET  /license_plate_game/hint

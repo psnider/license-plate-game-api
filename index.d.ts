@@ -95,7 +95,8 @@ export namespace LicencePlateGameAPI {
 
 export namespace LicencePlateGameClient {
 
-    // Has either status and statusText, or message
+    // This is the data returned when a Promise is rejected.
+    // This has either status and statusText, or message
     export interface RequestFailed {
         message?: number
         status?: number
@@ -106,5 +107,6 @@ export namespace LicencePlateGameClient {
     export function requestCheckAnswer(request: LicencePlateGameAPI.CheckAnswerRequest) : Promise<LicencePlateGameAPI.CheckAnswerResponse>
     export function requestHint(request: LicencePlateGameAPI.HintRequest) : Promise<LicencePlateGameAPI.HintResponse>
     export function requestUpTime() : Promise<LicencePlateGameAPI.UptimeResponse>
+    export function postFeedback(feedback: LicencePlateGameAPI.FeedBackPost) : Promise<void>
 
 }
