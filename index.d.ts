@@ -1,3 +1,7 @@
+// Indicates the grade level in the range [0..15].
+// Where 0 means kindergarten and 12 means last year of high school.
+export type GradeLevel = number
+
 
 // The data types used by the License Plate Game API.
 export namespace LicensePlateGameAPI {
@@ -23,7 +27,7 @@ export namespace LicensePlateGameAPI {
         // This is not set when the page is reloaded.
         elapsed_seconds?: number
         // The grade level of this puzzle.
-        previous_puzzle_grade_level?: number
+        previous_puzzle_grade_level?: GradeLevel
         user_selected_puzzle?: string
     }
 
@@ -35,7 +39,7 @@ export namespace LicensePlateGameAPI {
         puzzle_seed: string
         max_word_length: number
         solutions_count: number
-        grade_level: number
+        grade_level: GradeLevel
         notes?:  string[]
     }
 
@@ -53,7 +57,7 @@ export namespace LicensePlateGameAPI {
         // an invalid word has scores of zero
         boggle_score: number
         scrabble_score: number
-        grade_level?: number
+        grade_level?: GradeLevel
         word_set_size?: number
         is_vulgar?: boolean
         notes?: string[]
